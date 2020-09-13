@@ -20,35 +20,35 @@ void loop()
   	temp = temp - 0.5;                   //Subtract the offset 
   	temp = temp * 100;                   //Convert to degrees 
   	if(temp>40 && temp<=55 || gasinput>85 && gasinput<=100){
-      	digitalWrite(11, 255);
-      	digitalWrite(9, 165);
+		digitalWrite(11, 255);
+		digitalWrite(9, 165);
 		digitalWrite(10, 0);
-      	Serial.println("Surroundings are in critical stage");
-        //Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
-    }else if(temp>55 || gasinput>100){
-      	digitalWrite(11, 255);
-      	digitalWrite(9, 0);
+		Serial.println("Surroundings are in critical stage");
+		//Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
+        }else if(temp>55 || gasinput>100){
+		digitalWrite(11, 255);
+		digitalWrite(9, 0);
 		digitalWrite(10, 0);
-      	Serial.println("Surroundings are in critical stage");
-        //Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
+		Serial.println("Surroundings are in critical stage");
+		//Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
 	}else if(gasinput <=85 && temp <= 40){
-    	digitalWrite(11, 0);
-      	digitalWrite(9, 255);
+		digitalWrite(11, 0);
+		digitalWrite(9, 255);
 		digitalWrite(10, 0);
-      	Serial.println("everthing is in normal state");
-        //Serial.println("Temperature: "+temp+" gas density: "+gasinput);
-    }else if(temp >40 && temp <= 55 && gasinput >85 && gasinput<=100){
-      	digitalWrite(11, 255);
-      	digitalWrite(9, 165);
+		Serial.println("everthing is in normal state");
+		//Serial.println("Temperature: "+temp+" gas density: "+gasinput);
+        }else if(temp >40 && temp <= 55 && gasinput >85 && gasinput<=100){
+		digitalWrite(11, 255);
+		digitalWrite(9, 165);
 		digitalWrite(10, 0);
-      	Serial.println("Surroundings are in critical stage");
-        //Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
-    }else if(temp>55 && gasinput>100){
-      	digitalWrite(11, 255);
-      	digitalWrite(9, 0);
+		Serial.println("Surroundings are in critical stage");
+		//Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
+        }else if(temp>55 && gasinput>100){
+		digitalWrite(11, 255);
+		digitalWrite(9, 0);
 		digitalWrite(10, 0);
-      	Serial.println("Surroundings are in critical stage");
-        //Serial.println("Temperature: "+temp+" gas density: "+gasinput);
+		Serial.println("Surroundings are in critical stage");
+		//Serial.println("Temperature: "+temp+" gas density: "+gasinput);
     }
   	delay(1000);
 }
