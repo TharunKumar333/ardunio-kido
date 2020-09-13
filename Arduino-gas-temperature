@@ -1,0 +1,54 @@
+const int gaspin = A0; //This is the Aduino Pin that will read the gas sensor value
+const int sensepin = A1;  //This is the Arduino Pin that will read the sensor output
+int gasinput; //The variable we will use to store the gas sensor input
+int tempinput;    //The variable we will use to store the tmp36 sensor input
+float temp;        //The variable we will use to store temperature in degrees. 
+void setup()
+{
+  Serial.begin(9600);//Start the Serial Port at 9600 baud (default)
+  for(int i=9;i<=11;i++){
+		pinMode(i,OUTPUT);  
+  }
+}
+
+void loop()
+{
+  	gasinput = analogRead(gaspin);
+	tempinput = analogRead(sensepin);
+  	temp = (float)tempinput / 1024;   //find percentage of input reading
+  	temp = temp * 5;                     //multiply by 5V to get voltage
+  	temp = temp - 0.5;                   //Subtract the offset 
+  	temp = temp * 100;                   //Convert to degrees 
+  	if(temp>40 && temp<=55 || gasinput>85 && gasinput<=100){
+      	digitalWrite(11, 255);
+      	digitalWrite(9, 165);
+		digitalWrite(10, 0);
+      	Serial.println("Surroundings are in critical stage");
+        //Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
+    }else if(temp>55 || gasinput>100){
+      	digitalWrite(11, 255);
+      	digitalWrite(9, 0);
+		digitalWrite(10, 0);
+      	Serial.println("Surroundings are in critical stage");
+        //Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
+	}else if(gasinput <=85 && temp <= 40){
+    	digitalWrite(11, 0);
+      	digitalWrite(9, 255);
+		digitalWrite(10, 0);
+      	Serial.println("everthing is in normal state");
+        //Serial.println("Temperature: "+temp+" gas density: "+gasinput);
+    }else if(temp >40 && temp <= 55 && gasinput >85 && gasinput<=100){
+      	digitalWrite(11, 255);
+      	digitalWrite(9, 165);
+		digitalWrite(10, 0);
+      	Serial.println("Surroundings are in critical stage");
+        //Serial.println("Temperature: "+ temp +" gas density: "+gasinput);
+    }else if(temp>55 && gasinput>100){
+      	digitalWrite(11, 255);
+      	digitalWrite(9, 0);
+		digitalWrite(10, 0);
+      	Serial.println("Surroundings are in critical stage");
+        //Serial.println("Temperature: "+temp+" gas density: "+gasinput);
+    }
+  	delay(1000);
+}
